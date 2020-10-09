@@ -29,11 +29,6 @@ Linux - Ubuntu 18 - Docker - SSL opcional<br>
 [Con Docker](https://docs.google.com/document/d/1ekGySBjGHspbPEE3OLkMGlWwjLvudmyLKo9Et-Cxejk/edit "Clic")
 <br>
 
-* Docker - Script automático
-
-[Pasos para la ejecución](https://gitlab.com/b.mendoza/facturadorpro3/-/wikis/Script-Update-Docker)<br>
-[Script](blob/master/script-update.sh)<br>
-
 
 ### Manuales de actualización de SSL gratuito
 
@@ -54,23 +49,6 @@ Linux - Ubuntu 18 - Docker - SSL opcional<br>
 [Documentación](https://docs.google.com/document/d/1QO3H2nhV6dubGFc-IOrXY1X1hobmKkSmutfrtKbelTw/edit "Clic")<br>
 
 [Colección para Postman](https://drive.google.com/file/d/18u_2U8z4tADIlZ0DbWg8-wg3JYYnT_t9/view?usp=sharing "Clic")
-
-## Pruebas online
-
-### Panel de administración
-
-[URL](https://facturalo.pro "Clic")
-<br>
-Usuario: admin@gmail.com<br>
-Contraseña: 123456
-
-### Panel de cliente
-
-[URL](https://demo.facturalo.pro "Clic")
-<br>
-Usuario: demo@gmail.com<br>
-Contraseña: 123456
-
 
 ## Manuales adicionales
 
@@ -129,8 +107,8 @@ Migracion Jira-Issues(Gitlab): [Guía](https://docs.google.com/document/d/156wEG
 * Toda instalación es gestionada mediante los canales de Slack
 * Nuevas instalaciones o actualizaciones deben ser programadas y gestionadas, para ser ejecutada el mismo día debe haber un problema previo
 
-## FacturaloPeru
+## Factura Perú
 
-[facturaloperu.com](http://facturaloperu.com "Clic")<br>
-soporte@facturaloperu.com<br>
-wsapp: 930 973 902<br>
+[facturaperu.org.pe](http://facturaperu.org.pe "Clic")<br>
+soporte@facturaperu.org.pe<br>
+wsapp: 977860500<b>
