@@ -19,9 +19,8 @@
 ### Scripts de instalación con Docker
 
 Linux - Ubuntu 18 - Docker - SSL opcional<br>
-[Guia](https://gitlab.com/b.mendoza/facturadorpro3/snippets/1971490 "Clic")<br>
-[Script](https://gitlab.com/b.mendoza/facturadorpro3/snippets/1971490/raw "Clic")<br>
-
+[Guia](https://drive.google.com/file/d/1p5omfe_QZ360Utc-tenxE-sozKJHMgcW/view?usp=sharing "clic") <br>
+[Script](https://drive.google.com/file/d/1M1GMvhT9YS9RQ-r76RWXXenzy3wc2z0i/view?usp=sharing "clic" ) < br>
 
 ### Manuales de actualización
 
