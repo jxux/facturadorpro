@@ -99,14 +99,6 @@ Validador documentos: [Guía](https://docs.google.com/document/d/1v6XpJrEwCx3suR
 Proyecto Espejo (Mirror/Fork) (Por actualizar): [Guía](https://docs.google.com/document/d/1ePniWwGvylJDzHTcPOj6E_nQtD_eO6PCReB_xwzOn98/edit "Clic")<br>
 Migracion Jira-Issues(Gitlab): [Guía](https://docs.google.com/document/d/156wEGBlBiM35aFWbbnEi6HTWhag2TWtUMHkz_aoP7Lg/edit?usp=sharing "Clic")<br>
 
-## Soporte
-
-* Use Issues como sistema de tickets para añadir sus sugerencias, problemas o inquietudes
-* Inconvenientes con facturación serán atendidos con prioridad
-* Una vez obtiene acceso al repositorio tendrá un año de vigencia, pasado el año debe renovar su contrato
-* Toda instalación es gestionada mediante los canales de Slack
-* Nuevas instalaciones o actualizaciones deben ser programadas y gestionadas, para ser ejecutada el mismo día debe haber un problema previo
-
 ## Factura Perú
 
 [facturaperu.org.pe](http://facturaperu.org.pe "Clic")<br>
