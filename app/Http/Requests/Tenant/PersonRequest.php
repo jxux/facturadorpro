@@ -24,6 +24,9 @@ class PersonRequest extends FormRequest
                                  ->where('id', '<>' ,$id);
                 })
             ],
+            'code' => [
+                'required',
+            ],
             'name' => [
                 'required',
                 Rule::unique('tenant.persons')->where(function ($query) use($id, $type) {

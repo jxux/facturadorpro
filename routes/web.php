@@ -22,6 +22,7 @@ if ($hostname) {
 
         Route::middleware(['auth', 'redirect.module', 'locked.tenant'])->group(function() {
 
+            Route::get('bitacora', 'Tenant\BinnacleController@index')->name('tenant.binnacles.index');
 
             Route::get('catalogs', 'Tenant\CatalogController@index')->name('tenant.catalogs.index');
             Route::get('advanced', 'Tenant\AdvancedController@index')->name('tenant.advanced.index');

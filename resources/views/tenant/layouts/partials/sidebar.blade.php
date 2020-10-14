@@ -26,7 +26,17 @@
                         <a class="nav-link" href="{{ route('tenant.dashboard.index') }}">
                             <span class="float-right badge badge-red badge-danger mr-3">Nuevo</span>
                             <i class="fas fa-tachometer-alt" aria-hidden="true"></i>
-                            <span>DASHBOARD</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array('binnacles', $vc_modules))
+                    <li class="{{ ($path[0] === 'binnacle')?'nav-active':'' }}">
+                        <a class="nav-link" href="{{ route('tenant.binnacles.index') }}">
+                            <span class="float-right badge badge-red badge-danger mr-3">Nuevo</span>
+                            <i class="fas fa-book" aria-hidden="true"></i>
+                            <span>Bitacora</span>
                         </a>
                     </li>
                     @endif
@@ -58,7 +68,7 @@
                         ">
                         <a class="nav-link" href="#">
                             <i class="fas fa-file-invoice" aria-hidden="true"></i>
-                            <span>VENTAS</span>
+                            <span>Ventas</span>
                         </a>
                         <ul class="nav nav-children" style="">
                             @if(auth()->user()->type != 'integrator' && $vc_company->soap_type_id != '03')

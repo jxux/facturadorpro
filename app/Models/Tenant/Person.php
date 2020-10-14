@@ -18,6 +18,7 @@ class Person extends ModelTenant
         'type',
         'identity_document_type_id',
         'number',
+        'code',
         'name',
         'trade_name',
         'country_id',

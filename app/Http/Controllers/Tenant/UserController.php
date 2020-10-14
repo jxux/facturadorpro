@@ -12,32 +12,28 @@ use Modules\LevelAccess\Models\ModuleLevel;
 
 class UserController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         return view('tenant.users.index');
     }
 
-    public function record($id)
-    {
+    public function record($id){
         $record = new UserResource(User::findOrFail($id));
 
         return $record;
     }
 
-    public function tables()
-    {
+    public function tables(){
         $modules = Module::orderBy('description')->get();
         $establishments = Establishment::orderBy('description')->get();
-        $types = [['type' => 'admin', 'description'=>'Administrador'], ['type' => 'seller', 'description'=>'Vendedor']];
+        $types = [['type' => 'admin', 'description'=>'Administrador'], ['type' => 'seller', 'description'=>'Vendedor'], ['type' => 'supervisor', 'description'=>'Supervisor'], ['type' => 'collaborador', 'description'=>'Empleado']];
 
         return compact('modules', 'establishments','types');
     }
 
-    public function store(UserRequest $request)
-    {
+    public function store(UserRequest $request){
         $id = $request->input('id');
 
-        if(!$id)  //VALIDAR EMAIL DISPONIBLE
+        if(!$id)  //VALIDAR EMAIL DISPONIBLE        
         {
             $verify = User::where('email', $request->input('email'))->first();
             if($verify)

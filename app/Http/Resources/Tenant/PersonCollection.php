@@ -17,6 +17,7 @@ class PersonCollection extends ResourceCollection
         return $this->collection->transform(function($row, $key) {
             return [
                 'id' => $row->id,
+                'code' => $row->code,
                 'number' => $row->number,
                 'name' => $row->name,
                 'document_type' => $row->identity_document_type->description,
