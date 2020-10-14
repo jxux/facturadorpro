@@ -79,7 +79,7 @@
             return {
                 title: null,
                 showDialogVoided: false,
-                resource: 'binnacles',
+                resource: 'binnacle',
                 recordId: null,
                 showDialogOptions: false
 

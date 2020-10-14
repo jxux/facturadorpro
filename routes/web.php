@@ -22,16 +22,20 @@ if ($hostname) {
 
         Route::middleware(['auth', 'redirect.module', 'locked.tenant'])->group(function() {
 
-            Route::get('bitacora', 'Tenant\BinnacleController@index')->name('tenant.binnacles.index');
-
+            
+            
             Route::get('catalogs', 'Tenant\CatalogController@index')->name('tenant.catalogs.index');
             Route::get('advanced', 'Tenant\AdvancedController@index')->name('tenant.advanced.index');
-
+            
             Route::get('tasks', 'Tenant\TaskController@index')->name('tenant.tasks.index');
             Route::post('tasks/commands', 'Tenant\TaskController@listsCommand');
             Route::post('tasks/tables', 'Tenant\TaskController@tables');
             Route::post('tasks', 'Tenant\TaskController@store');
             Route::delete('tasks/{task}', 'Tenant\TaskController@destroy');
+            
+            //Binnacles
+            Route::get('binnacle', 'Tenant\BinnacleController@index')->name('tenant.binnacles.index');
+            Route::get('binnacle/columns', 'Tenant\BinnacleController@columns');
 
             //Orders
             Route::get('orders', 'Tenant\OrderController@index')->name('tenant_orders_index');
