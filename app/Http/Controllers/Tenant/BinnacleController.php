@@ -39,7 +39,7 @@ class BinnacleController extends Controller{
     }
 
     public function create(){
-        //
+        return view('tenant.binnacles.form');
     }
 
     public function store(Request $request){

@@ -119,7 +119,7 @@
         mixins: [functions, exchangeRate],
         data() {
             return {
-                resource: 'partdiary',
+                resource: 'binnacle',
                 showDialogAddItem: false,
                 showDialogNewPerson: false,
                 showDialogOptions: false,

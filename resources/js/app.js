@@ -33,6 +33,7 @@ Vue.component('x-graph', require('./components/graph/src/Graph.vue'));
 Vue.component('x-graph-line', require('./components/graph/src/GraphLine.vue'));
 
 Vue.component('tenant-binnacles-index', require('./views/tenant/binnacles/index.vue'));
+Vue.component('tenant-binnacles-form', require('./views/tenant/binnacles/form.vue'));
 
 Vue.component('tenant-companies-form', require('./views/tenant/companies/form.vue'));
 Vue.component('tenant-companies-logo', require('./views/tenant/companies/logo.vue'));
