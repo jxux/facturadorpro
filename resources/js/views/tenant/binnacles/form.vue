@@ -36,10 +36,10 @@
                         <div class="col-md-12">
                             <div class="form-group" :class="{'has-danger': errors.customer_work_id}">
                                 <label class="control-label">Cliente <span class="text-danger">*</span></label>
-                                <el-select v-model="form.customer_work_id" filterable>
+                                <el-select v-model="form.customer_id" filterable>
                                     <el-option v-for="option in suppliers" :key="option.id" :value="option.id" :label="option.description"></el-option>
                                 </el-select>
-                                <small class="form-control-feedback" v-if="errors.customer_work_id" v-text="errors.customer_work_id[0]"></small>
+                                <small class="form-control-feedback" v-if="errors.customer_id" v-text="errors.customer_id[0]"></small>
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                 loading_submit: false,
                 errors: {},
                 form: {},
-                aux_customer_work_id:null,
+                aux_customer_id:null,
                 document_types: [],
                 currency_types: [],
                 discount_types: [],
@@ -158,8 +158,8 @@
                     this.changeDocumentType()
                 })
 
-            this.$eventHub.$on('reloadDataPersons', (customer_work_id) => {
-                this.reloadDataSuppliers(customer_work_id)
+            this.$eventHub.$on('reloadDataPersons', (customer_id) => {
+                this.reloadDataSuppliers(customer_id)
            })
 
         },
@@ -178,9 +178,9 @@
                 }
             },
             selectSupplier(){
-                let supplier = _.find(this.suppliers, {'id': this.aux_customer_work_id})
-                this.form.customer_work_id = (supplier) ? supplier.id : null
-                this.aux_customer_work_id = null
+                let supplier = _.find(this.suppliers, {'id': this.aux_customer_id})
+                this.form.customer_id = (supplier) ? supplier.id : null
+                this.aux_customer_id = null
 
             },
             initForm() {
@@ -196,7 +196,7 @@
                     start_time: null,//moment().format('YYYY-MM-DD HH:mm:ss'),
                     end_time: null,//moment().format('YYYY-MM-DD HH:mm:ss'),
                     hour: null,
-                    customer_work_id: null,
+                    customer_id: null,
                     category_id:null,
                     service_id:null,
                     period:null,
@@ -255,8 +255,8 @@
             },
             
             reloadDataSuppliers(customer_work_id) {
-                this.$http.get(`/${this.resource}/table/customers-work`).then((response) => {
-                    this.aux_customer_work_id = customer_work_id
+                this.$http.get(`/${this.resource}/table/customers`).then((response) => {
+                    this.aux_customer_id = customer_id
                     this.all_suppliers = response.data
                     this.filterSuppliers()
                 })

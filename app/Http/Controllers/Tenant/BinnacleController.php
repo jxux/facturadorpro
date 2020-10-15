@@ -21,6 +21,10 @@ class BinnacleController extends Controller{
         return view('tenant.binnacles.index');
     }
 
+    public function catalogs(){
+        
+    }
+
     public function columns(){
         return [
             'description' => 'Descripción',

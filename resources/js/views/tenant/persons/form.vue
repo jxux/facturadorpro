@@ -2,7 +2,7 @@
     <el-dialog :title="titleDialog" :visible="showDialog" @close="close" @open="create" @opened="opened" :close-on-click-modal="false" append-to-body>
         <form autocomplete="off" @submit.prevent="submit">
             <div class="form-body">
-                <div class="row" v-if="type === 'customers'">
+                <div class="row" v-if="type === 'clients'">
                     <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label">Código <span class="text-danger">*</span></label>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="row" v-if="type === 'suppliers'">
+                <div class="row" v-else>
                     <div class="col-md-6">
                         <div class="form-group" :class="{'has-danger': errors.identity_document_type_id}">
                             <label class="control-label">Tipo Doc. Identidad <span class="text-danger">*</span></label>
@@ -431,6 +431,9 @@
                 }
                 if(this.type === 'suppliers') {
                     this.titleDialog = (this.recordId)? 'Editar Proveedor':'Nuevo Proveedor'
+                }
+                if(this.type === 'clients') {
+                    this.titleDialog = (this.recordId)? 'Editar Cliente':'Nuevo Cliente'
                 }
                 if (this.recordId) {
                     this.$http.get(`/${this.resource}/record/${this.recordId}`)

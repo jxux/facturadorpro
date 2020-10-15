@@ -31,15 +31,62 @@
                     </li>
                     @endif
 
-                    @if(in_array('binnacles', $vc_modules))
-                    <li class="{{ ($path[0] === 'binnacle')?'nav-active':'' }}">
-                        <a class="nav-link" href="{{ route('tenant.binnacles.index') }}">
-                            <span class="float-right badge badge-red badge-danger mr-3">Nuevo</span>
-                            <i class="fas fa-book" aria-hidden="true"></i>
-                            <span>Bitacora</span>
-                        </a>
-                    </li>
+                    @if(auth()->user()->type != 'integrator')
+                        @if(in_array('binnacles', $vc_modules))
+                            <li class="
+                                nav-parent
+                                {{ ($path[0] === 'binnacle')?'nav-active nav-expanded':'' }}
+                                {{ ($path[0] === 'cash')?'nav-active nav-expanded':'' }}
+                                {{ ($path[0] === 'item-sets')?'nav-active nav-expanded':'' }}
+                                {{ ($path[0] === 'persons' && $path[1] === 'clients')?'nav-active nav-expanded':'' }}
+                                ">
+                                <a class="nav-link" href="#">
+                                    <span class="float-right badge badge-red badge-danger mr-3">Nuevo</span>
+                                    <i class="fas fa-book" aria-hidden="true"></i>
+                                    <span>Bitácora</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="{{ ($path[0] === 'binnacle'  )?'nav-active':'' }}">
+                                        <a class="nav-link" href="{{ route('tenant.binnacles.index') }}">
+                                            Listado
+                                        </a>
+                                    </li>
+                                    <li class="{{ ($path[0] === 'cash'  )?'nav-active':'' }}">
+                                        <a class="nav-link" href="{{route('tenant.cash.index')}}">
+                                            Supervisor
+                                        </a>
+                                    </li>
+                                    <li class="nav-parent
+                                        {{ ($path[0] === 'persons' && $path[1] === 'clients')?'nav-active nav-expanded':'' }}
+                                        {{ ($path[0] === 'purchase-quotations')?'nav-active nav-expanded':'' }}
+                                        ">
+                                        <a class="nav-link" href="#">
+                                            Catálogos
+                                        </a>
+                                        <ul class="nav nav-children">
+
+                                            <li class="{{ ($path[0] === 'persons' && $path[1] === 'suppliers')?'nav-active':'' }}">
+                                                <a class="nav-link" href="{{route('tenant.persons.index', ['type' => 'suppliers'])}}">
+                                                    Categoria(Cuentas)
+                                                </a>
+                                            </li>
+                                            <li class="{{ ($path[0] === 'purchase-quotations')?'nav-active':'' }}">
+                                                <a class="nav-link" href="{{route('tenant.purchase-quotations.index')}}">
+                                                    Servicio(C. Costo)
+                                                </a>
+                                            </li>
+                                            <li class="{{ ($path[0] === 'persons' && $path[1] === 'clients')?'nav-active':'' }}">
+                                                <a class="nav-link" href="{{route('tenant.persons.index', ['type' => 'clients'])}}">
+                                                    Clientes
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                     @endif
+
 
                     @if(in_array('documents', $vc_modules))
                     <li class="
@@ -380,8 +427,7 @@
                     @if(auth()->user()->type != 'integrator')
 
                         @if(in_array('purchases', $vc_modules))
-                        <li class="
-                            nav-parent
+                        <li class="nav-parent
                             {{ ($path[0] === 'purchases')?'nav-active nav-expanded':'' }}
                             {{ ($path[0] === 'persons' && $path[1] === 'suppliers')?'nav-active nav-expanded':'' }}
                             {{ ($path[0] === 'expenses')?'nav-active nav-expanded':'' }}

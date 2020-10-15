@@ -19,7 +19,7 @@
                 <data-table :resource="resource+`/${this.type}`">
                     <tr slot="heading">
                         <th>#</th>
-                        <th v-if="type === 'customers'">Código</th>
+                        <th v-if="type === 'clients'">Código</th>
                         <th>Nombre</th>
                         <th class="text-right">Tipo de documento</th>
                         <th class="text-right">Número</th>
@@ -27,7 +27,7 @@
                     <tr>
                     <tr slot-scope="{ index, row }" :class="{ disable_color : !row.enabled}">
                         <td>{{ index }}</td>
-                        <td v-if="type === 'customers'">{{ row.code }}</td>
+                        <td v-if="type === 'clients'">{{ row.code }}</td>
                         <td>{{ row.name }}</td>
                         <td class="text-right">{{ row.document_type }}</td>
                         <td class="text-right">{{ row.number }}</td>
@@ -84,7 +84,11 @@
             }
         },
         created() {
-            this.title = (this.type === 'customers')?'Clientes':'Proveedores'
+            if(this.type === 'customers'||'clients')
+                this.title = 'Clientes'
+            else(this.type === 'suppliers')
+                this.title = 'Proveedores'
+            // this.title = (this.type === 'customers')?'Clientes':'Proveedores'
         },
         methods: {
             clickCreate(recordId = null) {

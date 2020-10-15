@@ -34,8 +34,9 @@ if ($hostname) {
             Route::delete('tasks/{task}', 'Tenant\TaskController@destroy');
             
             //Binnacles
-            Route::get('binnacle', 'Tenant\BinnacleController@index')->name('tenant.binnacles.index');
+            Route::get('binnacle/catalogs', 'Tenant\BinnacleController@catalogs')->name('tenant.binnacles.catalogs');
             Route::get('binnacle/columns', 'Tenant\BinnacleController@columns');
+            Route::get('binnacle', 'Tenant\BinnacleController@index')->name('tenant.binnacles.index');
             Route::get('binnacle/create', 'Tenant\BinnacleController@create')->name('tenant.binnacles.create');
             Route::post('binnacle', 'Tenant\BinnacleController@store');
 

@@ -16,7 +16,7 @@ class TenantPersonsTable extends Migration
         Schema::create('persons', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->nullable();
-            $table->enum('type', ['customers', 'suppliers']);
+            $table->enum('type', ['customers', 'suppliers', 'clients']);
             $table->string('identity_document_type_id');
             $table->string('number');
             $table->string('name');
