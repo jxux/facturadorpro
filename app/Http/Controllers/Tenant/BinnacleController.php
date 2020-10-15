@@ -22,7 +22,7 @@ class BinnacleController extends Controller{
     }
 
     public function catalogs(){
-        
+        return view('tenant.binnacles.catalog.index');     
     }
 
     public function columns(){

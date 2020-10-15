@@ -84,11 +84,13 @@
             }
         },
         created() {
-            if(this.type === 'customers'||'clients')
-                this.title = 'Clientes'
-            else(this.type === 'suppliers')
+
+            if(this.type === 'suppliers')
                 this.title = 'Proveedores'
-            // this.title = (this.type === 'customers')?'Clientes':'Proveedores'
+            else 
+                this.title = 'Clientes'
+
+            // this.title = (this.type === 'customers'||'clients')?'Clientes':'Proveedores'
         },
         methods: {
             clickCreate(recordId = null) {

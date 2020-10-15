@@ -10,17 +10,15 @@ use App\Http\Resources\Tenant\TributeConceptTypeCollection;
 use App\Http\Requests\Tenant\TributeConceptTypeRequest;
 use Exception;
 
-class TributeConceptTypeController extends Controller
-{
-    public function records()
-    { 
+class TributeConceptTypeController extends Controller{
+
+    public function records(){ 
         $records = new TributeConceptTypeCollection(AttributeType::all());
 
         return $records;
     }
 
-    public function record($id)
-    {
+    public function record($id){
         $record = new TributeConceptTypeResource(AttributeType::findOrFail($id));
 
         return $record;

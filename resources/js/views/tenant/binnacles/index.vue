@@ -6,7 +6,7 @@
                 <li class="active"><span>Bitácora</span></li>
             </ol>
             <div class="right-wrapper pull-right">
-                <a :href="`/binnacle/create`" class="btn btn-custom btn-sm  mt-2 mr-2"><i class="fa fa-plus-circle"></i> Nuevo</a>
+                <a :href="`/binnacles/create`" class="btn btn-custom btn-sm  mt-2 mr-2"><i class="fa fa-plus-circle"></i> Nuevo</a>
             </div>
         </div>
         <div class="card mb-0">
@@ -79,7 +79,7 @@
             return {
                 title: null,
                 showDialogVoided: false,
-                resource: 'binnacle',
+                resource: 'binnacles',
                 recordId: null,
                 showDialogOptions: false
 

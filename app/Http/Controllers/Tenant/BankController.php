@@ -8,10 +8,10 @@ use App\Http\Resources\Tenant\BankResource;
 use App\Models\Tenant\Bank;
 use Exception;
 
-class BankController extends Controller
-{
-    public function records()
-    {
+class BankController extends Controller{
+    
+    public function records(){
+
         $records = Bank::all();
 
         return new BankCollection($records);
