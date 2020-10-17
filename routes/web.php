@@ -34,18 +34,20 @@ if ($hostname) {
             Route::delete('tasks/{task}', 'Tenant\TaskController@destroy');
             
             //Binnacles
-            Route::get('binnacles/columns', 'Tenant\BinnacleController@columns');
             Route::get('binnacle', 'Tenant\BinnacleController@index')->name('tenant.binnacles.index');
-            Route::get('binnacles/create', 'Tenant\BinnacleController@create')->name('tenant.binnacles.create');
+            Route::get('binnacles/columns', 'Tenant\BinnacleController@columns');
+            Route::get('binnacles/records', 'Tenant\BinnacleController@records');
             Route::post('binnacles', 'Tenant\BinnacleController@store');
+        
+            // Route::get('binnacles/create', 'Tenant\BinnacleController@create')->name('tenant.binnacles.create');
+            Route::get('binnacles/catalogs', 'Tenant\BinnacleController@catalogs')->name('tenant.binnacles.catalogs');
+            Route::get('binnacles/tables', 'Tenant\BinnacleController@tables');
             
             //Binnacles Catalogs
-            Route::get('binnacles/catalogs', 'Tenant\BinnacleController@catalogs')->name('tenant.binnacles.catalogs');
             Route::get('binnacles/category', 'Tenant\BinnacleCategorysController@records');
             // Route::post('catalogs', 'Tenant\BinnacleCatalogsController@store');
-
             //Binnacles Service
-            Route::get('binnacles/services', 'Tenant\BinnacleServicesController@records');
+            Route::get('binnacles/service', 'Tenant\BinnacleServicesController@records');
             // Route::post('services', 'Tenant\BinnacleServicesController@store');
 
             //Orders

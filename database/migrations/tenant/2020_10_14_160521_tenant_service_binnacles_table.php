@@ -15,10 +15,10 @@ class TenantServiceBinnaclesTable extends Migration
     {
         Schema::create('Service_Binnacles', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('code')->unique();
+            $table->char('code',5)->unique();
             $table->string('name', 150);
 
-            $table->unsignedInteger('category_id')->nullable();
+            $table->char('category_id')->nullable();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('Category_Binnacles');

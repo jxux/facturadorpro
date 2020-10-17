@@ -31,7 +31,7 @@ class BinnacleRequest extends FormRequest{
             'hour' => [
                 'required',
             ],
-            'customer_work_id' => [
+            'client_id' => [
                 'required',
             ],
             'category_id' => [

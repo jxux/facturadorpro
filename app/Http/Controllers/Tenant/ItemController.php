@@ -110,8 +110,7 @@ class ItemController extends Controller
 
     }
 
-    public function create()
-    {
+    public function create(){
         return view('tenant.items.form');
     }
 

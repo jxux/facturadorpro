@@ -790,9 +790,6 @@
                 this.setDefaultConfiguration()
             },
             create() {
-
-
-
                 this.titleDialog = (this.recordId)? 'Editar Producto':'Nuevo Producto'
                 if (this.recordId) {
                     this.$http.get(`/${this.resource}/record/${this.recordId}`)

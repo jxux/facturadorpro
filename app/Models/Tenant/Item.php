@@ -13,8 +13,8 @@ use Modules\Item\Models\ItemLot;
 use Modules\Item\Models\ItemLotsGroup;
 
 
-class Item extends ModelTenant
-{
+class Item extends ModelTenant{
+    
     protected $with = ['item_type', 'unit_type', 'currency_type', 'warehouses','item_unit_types', 'tags'];
     protected $fillable = [
         'warehouse_id',

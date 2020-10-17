@@ -38,8 +38,8 @@
                         <th>Nombre</th>
                         <th>Descripción</th>
                         <th>Cód. SUNAT</th>
-                        <th  class="text-left">Stock</th>
-                        <th  class="text-right">P.Unitario (Venta)</th>
+                        <th class="text-left">Stock</th>
+                        <th class="text-right">P.Unitario (Venta)</th>
                         <th v-if="typeUser != 'seller'" class="text-right">P.Unitario (Compra)</th>
                         <th class="text-center">Tiene Igv (Venta)</th>
                         <th class="text-center">Tiene Igv (Compra)</th>

@@ -21,8 +21,8 @@ class BinnacleCollection extends ResourceCollection{
                 'start_time'=> $row->start_time->format('h:i a'),
                 'end_time'=> $row->end_time->format('h:i a'),
                 'hour'=> $row->hour,
-                'customer'=> $row->customer->name,
-                // 'customer_work_id',
+                'client'=> $row->client->name,
+                // 'client_id',
                 // 'category_id',
                 'period' => $row->period->format('M/Y'),
                 // 'service_id',
@@ -31,8 +31,8 @@ class BinnacleCollection extends ResourceCollection{
                 // 'code' => $row->code,
                 // 'number' => $row->number,
                 // 'name' => $row->name,
-                'created_at' => $row->created_at->format('Y-m-d h:i a'),
-                'updated_at' => $row->updated_at->format('Y-m-d h:i:s'),
+                // 'created_at' => $row->created_at->format('Y-m-d h:i a'),
+                // 'updated_at' => $row->updated_at->format('Y-m-d h:i:s'),
             ];
         });
     }

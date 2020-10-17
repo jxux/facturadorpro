@@ -21,8 +21,8 @@ class TenantBinnaclesTable extends Migration
             $table->datetime('start_time');
             $table->datetime('end_time');
             $table->decimal('hour', 8, 2)->nullable();
-            $table->unsignedInteger('customer_id');
-            $table->json('customer');
+            $table->unsignedInteger('client_id');
+            $table->json('client');
             $table->unsignedInteger('category_id');
             $table->date('period');
             $table->unsignedInteger('service_id');

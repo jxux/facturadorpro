@@ -2,7 +2,7 @@
 
 @section('content')
 
-<tenant-binnacles-index></tenant-binnacles-index>
+<tenant-binnacles-index :type-user="{{json_encode(Auth::user()->type)}}"></tenant-binnacles-index>
     {{-- :type-user="{{json_encode(Auth::user()->type)}}" --}}
                             {{-- :is-client="{{ json_encode($is_client) }}" --}}
                             {{-- :type-user="{{ json_encode(auth()->user()->type) }}"

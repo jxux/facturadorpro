@@ -22,21 +22,22 @@ class PersonsImport implements ToCollection
             foreach ($rows as $row)
             {
                 $type = request()->input('type');
-                $identity_document_type_id = $row[0];
-                $number = $row[1];
-                $name = $row[2];
-                $trade_name = $row[3];
-                $country_id = ($row[4])?:'PE';
-                $location_id = $row[5];
+                $code = $row [0];
+                $identity_document_type_id = $row[1];
+                $number = $row[2];
+                $name = $row[3];
+                $trade_name = $row[4];
+                $country_id = ($row[5])?:'PE';
+                $location_id = $row[6];
                 $department_id = null;
                 $province_id = null;
                 if($location_id) {
                     $department_id = substr($location_id, 0, 2);
                     $province_id = substr($location_id, 0, 4);
                 }
-                $address = $row[6];
-                $email = $row[7];
-                $telephone = $row[8];
+                $address = $row[7];
+                $email = $row[8];
+                $telephone = $row[9];
 
                 $person = Person::where('type', $type)
                                 ->where('identity_document_type_id', $identity_document_type_id)
@@ -46,6 +47,7 @@ class PersonsImport implements ToCollection
                 if(!$person) {
                     Person::create([
                         'type' => $type,
+                        'code' => $code,
                         'identity_document_type_id' => $identity_document_type_id,
                         'number' => $number,
                         'name' => $name,

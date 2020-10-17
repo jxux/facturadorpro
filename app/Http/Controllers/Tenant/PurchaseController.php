@@ -467,8 +467,7 @@ class PurchaseController extends Controller
         return $inputs->all();
     }
 
-    public function table($table)
-    {
+    public function table($table){
         switch ($table) {
             case 'suppliers':
 

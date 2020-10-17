@@ -22,8 +22,7 @@ use App\Models\System\Configuration;
 
 class PersonController extends Controller
 {
-    public function index($type)
-    {
+    public function index($type){
         $configuration = Configuration::first();
         $api_service_token = $configuration->token_apiruc =! '' ? $configuration->token_apiruc : config('configuration.api_service_token');
         return view('tenant.persons.index', compact('type','api_service_token'));
@@ -43,6 +42,7 @@ class PersonController extends Controller
       //  return 'sd';
         $records = Person::where($request->column, 'like', "%{$request->value}%")
                             ->where('type', $type)
+                            ->orderBy('code','desc')
                             ->orderBy('name');
 
         return new PersonCollection($records->paginate(config('tenant.items_per_page')));
@@ -201,8 +201,7 @@ class PersonController extends Controller
 
     }
 
-    public function export(Request $request)
-    {
+    public function export(Request $request){
         $date = $request->month_start.'-01';
         $start_date = Carbon::parse($date);
         $end_date = Carbon::parse($date)->addMonth()->subDay();
@@ -214,7 +213,6 @@ class PersonController extends Controller
         return (new ClientExport)
                 ->records($records)
                 ->download('Reporte_Clientes_'.Carbon::now().'.xlsx');
-
     }
 
 }

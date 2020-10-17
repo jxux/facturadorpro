@@ -15,7 +15,7 @@ class TenantCategoryBinnaclesTable extends Migration
     {
         Schema::create('Category_Binnacles', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('code')->unique();
+            $table->char('code',5)->unique();
             $table->string('name', 150);
             $table->timestamps();
         });

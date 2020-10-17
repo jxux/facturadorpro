@@ -40,16 +40,16 @@ class Binnacle extends ModelTenant{
     ];
 
 
-    public function getCustomerWorkAttribute($value){
+    public function getClientAttribute($value){
         return (is_null($value))?null:(object) json_decode($value);
     }
 
-    public function setCustomerWorkAttribute($value){
-        $this->attributes['customer'] = (is_null($value))?null:json_encode($value);
+    public function setClientAttribute($value){
+        $this->attributes['client'] = (is_null($value))?null:json_encode($value);
     }
 
-    public function customer_work() {
-        return $this->belongsTo(CurrencyType::class, 'customer_id');
+    public function Client() {
+        return $this->belongsTo(CurrencyType::class, 'client_id');
     }
 
     // public function user(){
