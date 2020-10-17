@@ -204,8 +204,7 @@ class ItemController extends Controller
 
         }
 
-        if($request->tags_id)
-        {
+        if($request->tags_id){
             ItemTag::destroy(   ItemTag::where('item_id', $item->id)->pluck('id'));
             foreach ($request->tags_id as $value) {
                 ItemTag::create(['item_id' => $item->id,  'tag_id' => $value]);

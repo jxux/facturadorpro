@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\Person;
+use App\Models\Tenant\Company;
 
 use App\Models\Tenant\Binnacle;
 use App\Http\Resources\Tenant\BinnacleCollection;
@@ -32,7 +33,7 @@ class BinnacleController extends Controller{
     public function columns(){
         return [
             'description' => 'Descripción',
-            'customer' => 'Cliente',
+            'client' => 'Cliente',
         ];
     }
 
@@ -52,7 +53,6 @@ class BinnacleController extends Controller{
         $clients = $this->table('clients');
         $categorys = $this->table('categorys');
         $services = $this->table('services');
-
 
         // $company = Company::active();
 
@@ -106,6 +106,33 @@ class BinnacleController extends Controller{
         }
     }
 
+    public function create(){
+        return view('tenant.binnacles.form');
+    }
+
+    public function store(BinnacleRequest $request){
+        $data = self::convert($request);
+
+        $id = $request->input('id');
+        $event = Binnacle::firstOrNew(['id' => $id]);
+
+        $event->fill($request->all());
+
+        // $event = DB::connection('tenant')->transaction(function () use ($data) {
+        //     $doc = Binnacle::create($data); 
+
+        //     return $doc;
+        // });
+
+        // return dd();
+        $event->save();
+
+        return [
+            'success' => true,
+            'message' => ($id)?'Evento editado con éxito':'Evento registrado con éxito',
+            'id' => $event->id
+        ];
+    }
 
     public static function convert($inputs){
         $company = Company::active();
@@ -113,9 +140,9 @@ class BinnacleController extends Controller{
             'user_id' => auth()->id(),
             'external_id' => Str::uuid()->toString(),
             'client' => PersonInput::set($inputs['client_id']),
-            'soap_type_id' => $company->soap_type_id,
-            'group_id' => ($inputs->document_type_id === '01') ? '01':'02',
-            'state_type_id' => '01'
+            // 'soap_type_id' => $company->soap_type_id,
+            // 'group_id' => ($inputs->document_type_id === '01') ? '01':'02',
+            // 'state_type_id' => '01'
         ]; 
 
         $inputs->merge($values);
@@ -123,22 +150,7 @@ class BinnacleController extends Controller{
         return $inputs->all();
     }
 
-    public function create(){
-        return view('tenant.binnacles.form');
-    }
-
-    public function store(Request $request){
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+    public function show($id){
         //
     }
 

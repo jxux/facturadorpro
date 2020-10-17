@@ -188,8 +188,8 @@
                     this.$eventHub.$emit('reloadData')
                 )
             },
+            
             clickBarcode(row) {
-
                 if(!row.internal_id){
                     return this.$message.error('Para generar el código de barras debe registrar el código interno.')
                 }

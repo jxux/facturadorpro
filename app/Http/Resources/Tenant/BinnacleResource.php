@@ -22,7 +22,7 @@ class BinnacleResource extends JsonResource
             'start_time' => $this->start_time->format('Y-m-d h:i:s'),
             'end_time' => $this->end_time->format('Y-m-d h:i:s'),
             'hour' => $this->hour,
-            // 'client_id' => $this->client_id,
+            'client_id' => $this->client_id,
             // 'client' => $this->client,
             'category_id' => $this->category_id,
             'period' => $this->period->format('Y-m-d'),

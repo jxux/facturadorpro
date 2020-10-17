@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group" :class="{'has-danger': errors.internal_id}">
+                    <div class="form-group" :class="{'has-danger': errors.service_id}">
                         <label class="control-label">Servicio (Centro de Costo)
                             <!-- <el-tooltip class="item" effect="dark" content="Código interno de la empresa para el control de sus productos" placement="top-start">
                                 <i class="fa fa-info-circle"></i>
@@ -81,6 +81,7 @@
                     <div class="form-group" :class="{'has-danger': errors.description}">
                         <label class="control-label">Descripción</label>
                         <el-input :rows="5" v-model="form.description" dusk="description" type="textarea"></el-input>
+                        <p>{{form}}</p>
                         <small class="form-control-feedback" v-if="errors.description" v-text="errors.description[0]"></small>
                     </div>
                 </div>
@@ -120,6 +121,7 @@
                 services: [],
                 categorys: [],
                 titleDialog: null,
+                eventNewId:null
             }
         },
         async created() {
@@ -131,6 +133,8 @@
                     this.categorys = response.data.categorys
 
                     this.selectClient()
+                    // this.selectCategory()
+                    // this.selectService()
 
                 })
 
@@ -138,15 +142,38 @@
                 this.reloadDataClients(client_id)
            })
 
+            // await this.setDefaultConfiguration()
+
         },
 
         methods: {
+
+            setDefaultConfiguration(){
+                this.form.sale_affectation_igv_type_id = (this.configuration) ? this.configuration.affectation_igv_type_id : '10'
+
+                this.$http.get(`/configurations/record`) .then(response => {
+                    this.form.has_igv = response.data.data.include_igv
+                    this.form.purchase_has_igv = response.data.data.include_igv
+                })
+            },
 
             selectClient(){
                 let clients = _.find(this.clients, {'id': this.aux_client_id})
                 this.form.client_id = (clients) ? clients.id : null
                 this.aux_client_id = null
             },
+
+            // selectCategory(){
+            //     let categorys = _.find(this.categorys, {'id': this.aux_category_id})
+            //     this.form.category_id = (categorys) ? categorys.id : null
+            //     this.aux_category_id = null
+            // },
+
+            // selectService(){
+            //     let services = _.find(this.services, {'id': this.aux_service_id})
+            //     this.form.service_id = (services) ? services.id : null
+            //     this.aux_service_id = null
+            // },
 
             clickDelete(id) {
 
@@ -176,11 +203,13 @@
                 this.loading_submit = false,
                 this.errors = {}
                 this.form = {
-                    establishment_id: null,
-                    document_type_id: null,
-                    series: null,
-                    number: null,
+                    // establishment_id: null,
+                    // document_type_id: null,
+                    // series: null,
+                    // number: null,
                     aux_client_id:null,
+                    aux_category_id:null,
+                    aux_service_id:null,
                     date: moment().format('YYYY-MM-DD'),
                     start_time: null,//moment().format('YYYY-MM-DD HH:mm:ss'),
                     end_time: null,//moment().format('YYYY-MM-DD HH:mm:ss'),
@@ -199,20 +228,18 @@
 
             calHora(){
                 
-                var fecha1 = moment(this.form.start_time)//moment('2020-06-01 10:00:00');
-                var fecha2 = moment(this.form.end_time)//moment('2020-06-01 13:00:00');
-                // console.log(fecha1)
+                var fecha1 = moment(this.form.start_time)//moment('2020-06-01 10:00:00');//
+                var fecha2 = moment(this.form.end_time)//moment('2020-06-01 13:00:00');//
 
-                // console.log(fecha2.diff(fecha1,'hours','minutes','seconds')),
+                this.form.hour = moment(fecha2.diff(fecha1))
 
-                this.form.hour = moment(fecha2.diff(fecha1,'hours','minutes','seconds'))
             },
 
             resetForm() {
                 this.initForm()
                 // this.form.sale_affectation_igv_type_id = (this.affectation_igv_types.length > 0)?this.affectation_igv_types[0].id:null
                 // this.form.purchase_affectation_igv_type_id = (this.affectation_igv_types.length > 0)?this.affectation_igv_types[0].id:null
-                this.setDefaultConfiguration()
+                // this.setDefaultConfiguration()
             },
             create() {
 
@@ -239,36 +266,16 @@
                 }
             },
             async submit() {
-                // if(this.form.has_perception && !this.form.percentage_perception) return this.$message.error('Ingrese un porcentaje');
-
-                // if(!this.recordId && this.form.lots_enabled){
-
-                //     if(!this.form.lot_code)
-                //         return this.$message.error('Código de lote es requerido');
-
-                //     if(!this.form.date_of_due)
-                //         return this.$message.error('Fecha de vencimiento es requerido si lotes esta habilitado.');
-                // }
-
-                // if(!this.recordId && this.form.series_enabled){
-
-                //     if(this.form.lots.length > this.form.stock)
-                //         return this.$message.error('La cantidad de series registradas es superior al stock');
-
-                //     if(this.form.lots.length != this.form.stock)
-                //         return this.$message.error('La cantidad de series registradas son diferentes al stock');
-                // }
-
+                this.calHora()
                 this.loading_submit = true
-                await this.$http.post(`/${this.resource}`, this.form)
+                // await 
+                this.$http.post(`/${this.resource}`, this.form)
                     .then(response => {
+
                         if (response.data.success) {
-                            this.$message.success(response.data.message)
-                            if (this.external) {
-                                this.$eventHub.$emit('reloadDataItems', response.data.id)
-                            } else {
-                                this.$eventHub.$emit('reloadData')
-                            }
+                            this.resetForm()
+                            this.eventNewId = response.data.data.id
+                            this.showDialogOptions = true
                             this.close()
                         } else {
                             this.$message.error(response.data.message)
@@ -278,13 +285,35 @@
                         if (error.response.status === 422) {
                             this.errors = error.response.data
                         } else {
-                            console.log(error)
+                            this.$message.error(error.response.data.message)
                         }
                     })
                     .then(() => {
                         this.loading_submit = false
                     })
+
+                    // .then(response => {
+                    //     if (response.data.success) {
+                    //         this.$message.success(response.data.message)
+                    //         if (this.external) {
+                    //             this.$eventHub.$emit('reloadDataItems', response.data.id)
+                    //         } else {
+                    //             this.$eventHub.$emit('reloadData')
+                    //         }
+                    //         this.close()
+                    //     } else {
+                    //         this.$message.error(response.data.message)
+                    //     }
+                    // })
+                    // .catch(error => {
+                    //     if (error.response.status === 422) {
+                    //         this.errors = error.response.data
+                    //     } else {
+                    //         console.log(error)
+                    //     }
+                    // })
             },
+
             close() {
                 this.$emit('update:showDialog', false)
                 this.resetForm()
