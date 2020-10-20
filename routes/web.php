@@ -38,6 +38,9 @@ if ($hostname) {
             Route::get('binnacles/columns', 'Tenant\BinnacleController@columns');
             Route::get('binnacles/records', 'Tenant\BinnacleController@records');
             Route::post('binnacles', 'Tenant\BinnacleController@store');
+            Route::get('binnacles/record/{event}', 'Tenant\BinnacleController@record');
+            Route::delete('binnacles/{event}', 'Tenant\BinnacleController@destroy');
+            Route::get('binnacles/export', 'Tenant\BinnacleController@export')->name('tenant.binnacles.export');
         
             // Route::get('binnacles/create', 'Tenant\BinnacleController@create')->name('tenant.binnacles.create');
             Route::get('binnacles/catalogs', 'Tenant\BinnacleController@catalogs')->name('tenant.binnacles.catalogs');

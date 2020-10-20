@@ -99,6 +99,7 @@ class Document extends ModelTenant
         $this->attributes['establishment'] = (is_null($value))?null:json_encode($value);
     }
 
+
     public function getCustomerAttribute($value)
     {
         return (is_null($value))?null:(object) json_decode($value);
@@ -108,6 +109,7 @@ class Document extends ModelTenant
     {
         $this->attributes['customer'] = (is_null($value))?null:json_encode($value);
     }
+
 
     public function getChargesAttribute($value)
     {
@@ -119,6 +121,7 @@ class Document extends ModelTenant
         $this->attributes['charges'] = (is_null($value))?null:json_encode($value);
     }
 
+
     public function getDiscountsAttribute($value)
     {
         return (is_null($value))?null:(object) json_decode($value);
@@ -128,6 +131,7 @@ class Document extends ModelTenant
     {
         $this->attributes['discounts'] = (is_null($value))?null:json_encode($value);
     }
+
 
     public function getPrepaymentsAttribute($value)
     {
@@ -139,6 +143,7 @@ class Document extends ModelTenant
         $this->attributes['prepayments'] = (is_null($value))?null:json_encode($value);
     }
 
+
     public function getGuidesAttribute($value)
     {
         return (is_null($value))?null:(object) json_decode($value);
@@ -148,6 +153,7 @@ class Document extends ModelTenant
     {
         $this->attributes['guides'] = (is_null($value))?null:json_encode($value);
     }
+
 
     public function getRelatedAttribute($value)
     {
@@ -219,6 +225,7 @@ class Document extends ModelTenant
     {
         $this->attributes['response_regularize_shipping'] = (is_null($value))?null:json_encode($value);
     }
+    
 
     public function getAdditionalInformationAttribute($value)
     {

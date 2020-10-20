@@ -9,6 +9,8 @@ class Service extends ModelTenant{
     protected $table = 'service_binnacles';
 
     protected $fillable = [
+        
+        'code',
         'name',
     ];
 

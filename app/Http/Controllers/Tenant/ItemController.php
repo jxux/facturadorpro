@@ -315,8 +315,7 @@ class ItemController extends Controller
         ];
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id){
         try {
 
             $item = Item::findOrFail($id);
@@ -333,8 +332,6 @@ class ItemController extends Controller
             return ($e->getCode() == '23000') ? ['success' => false,'message' => 'El producto esta siendo usado por otros registros, no puede eliminar'] : ['success' => false,'message' => 'Error inesperado, no se pudo eliminar el producto'];
 
         }
-
-
     }
 
     public function destroyItemUnitType($id)

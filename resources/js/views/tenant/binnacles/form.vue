@@ -121,7 +121,9 @@
                 services: [],
                 categorys: [],
                 titleDialog: null,
-                eventNewId:null
+                eventNewId: null,
+                hora1: null,
+                hora2: null
             }
         },
         async created() {
@@ -133,8 +135,8 @@
                     this.categorys = response.data.categorys
 
                     this.selectClient()
-                    // this.selectCategory()
-                    // this.selectService()
+                    this.selectCategory()
+                    this.selectService()
 
                 })
 
@@ -163,17 +165,17 @@
                 this.aux_client_id = null
             },
 
-            // selectCategory(){
-            //     let categorys = _.find(this.categorys, {'id': this.aux_category_id})
-            //     this.form.category_id = (categorys) ? categorys.id : null
-            //     this.aux_category_id = null
-            // },
+            selectCategory(){
+                let categorys = _.find(this.categorys, {'id': this.aux_category_id})
+                this.form.category_id = (categorys) ? categorys.id : null
+                this.aux_category_id = null
+            },
 
-            // selectService(){
-            //     let services = _.find(this.services, {'id': this.aux_service_id})
-            //     this.form.service_id = (services) ? services.id : null
-            //     this.aux_service_id = null
-            // },
+            selectService(){
+                let services = _.find(this.services, {'id': this.aux_service_id})
+                this.form.service_id = (services) ? services.id : null
+                this.aux_service_id = null
+            },
 
             clickDelete(id) {
 
@@ -213,7 +215,7 @@
                     date: moment().format('YYYY-MM-DD'),
                     start_time: null,//moment().format('YYYY-MM-DD HH:mm:ss'),
                     end_time: null,//moment().format('YYYY-MM-DD HH:mm:ss'),
-                    hour: null,
+                    hour: null,//moment(fecha2.diff(fecha1)).utc().format("hh:mm"),
                     client_id: null,
                     category_id:null,
                     service_id:null,
@@ -221,17 +223,16 @@
                     description:null,
                     status:null,
                 }
-                // this.show_has_igv = true
-                // this.purchase_show_has_igv = true
-                // this.enabled_percentage_of_profit = false
+
             },
 
             calHora(){
-                
-                var fecha1 = moment(this.form.start_time)//moment('2020-06-01 10:00:00');//
-                var fecha2 = moment(this.form.end_time)//moment('2020-06-01 13:00:00');//
+                var hora1 = moment(this.form.start_time)//moment('2020-06-01 10:00:00');//
+                var hora2 = moment(this.form.end_time)//moment('2020-06-01 13:30:00');//
+                this.form.hour = moment(hora2.diff(hora1)).utc().format("hh:mm")
 
-                this.form.hour = moment(fecha2.diff(fecha1))
+                // this.form.start_time = moment(this.form.start_time).format("hh:mm:ss")
+                // this.form.end_time = moment(this.form.end_time).format("hh:mm:ss")
 
             },
 
@@ -268,14 +269,16 @@
             async submit() {
                 this.calHora()
                 this.loading_submit = true
-                // await 
-                this.$http.post(`/${this.resource}`, this.form)
+                await this.$http.post(`/${this.resource}`, this.form)
                     .then(response => {
-
                         if (response.data.success) {
-                            this.resetForm()
-                            this.eventNewId = response.data.data.id
-                            this.showDialogOptions = true
+                            // this.resetForm()
+                            this.$message.success(response.data.message)
+                             if (this.external) {
+                                this.$eventHub.$emit('reloadDataItems', response.data.id)
+                            } else {
+                                this.$eventHub.$emit('reloadData')
+                            }
                             this.close()
                         } else {
                             this.$message.error(response.data.message)
@@ -291,27 +294,6 @@
                     .then(() => {
                         this.loading_submit = false
                     })
-
-                    // .then(response => {
-                    //     if (response.data.success) {
-                    //         this.$message.success(response.data.message)
-                    //         if (this.external) {
-                    //             this.$eventHub.$emit('reloadDataItems', response.data.id)
-                    //         } else {
-                    //             this.$eventHub.$emit('reloadData')
-                    //         }
-                    //         this.close()
-                    //     } else {
-                    //         this.$message.error(response.data.message)
-                    //     }
-                    // })
-                    // .catch(error => {
-                    //     if (error.response.status === 422) {
-                    //         this.errors = error.response.data
-                    //     } else {
-                    //         console.log(error)
-                    //     }
-                    // })
             },
 
             close() {

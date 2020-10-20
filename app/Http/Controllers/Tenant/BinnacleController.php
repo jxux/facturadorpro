@@ -9,6 +9,7 @@ use App\Models\Tenant\Company;
 
 use App\Models\Tenant\Binnacle;
 use App\Http\Resources\Tenant\BinnacleCollection;
+use App\Http\Resources\Tenant\BinnacleResource;
 use App\Http\Requests\Tenant\BinnacleRequest;
 
 use App\Models\Tenant\Category;
@@ -18,7 +19,12 @@ use App\Models\Tenant\Service;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\CoreFacturalo\Requests\Inputs\Common\PersonInput;
+use App\CoreFacturalo\Requests\Inputs\Common\CategoryInput;
+use App\CoreFacturalo\Requests\Inputs\Common\ServiceInput;
 
+use App\Exports\BinnacleExport;
+use Maatwebsite\Excel\Excel;
+use Carbon\Carbon;
 
 class BinnacleController extends Controller{
 
@@ -34,6 +40,9 @@ class BinnacleController extends Controller{
         return [
             'description' => 'Descripción',
             'client' => 'Cliente',
+            'category' => 'Categoría',
+            'service' => 'Servicio',
+
         ];
     }
 
@@ -45,6 +54,8 @@ class BinnacleController extends Controller{
                             ->where($request->column, 'like', "%{$request->value}%")
                             ->orderBy('date','desc')
                             ->orderBy('end_time','desc');
+        
+        // return dd();
 
         return new BinnacleCollection($records->paginate(config('tenant.items_per_page')));
     }
@@ -140,6 +151,8 @@ class BinnacleController extends Controller{
             'user_id' => auth()->id(),
             'external_id' => Str::uuid()->toString(),
             'client' => PersonInput::set($inputs['client_id']),
+            'category' => CategoryInput::set($inputs['category_id']),
+            'service' => ServiceInput::set($inputs['service_id']),
             // 'soap_type_id' => $company->soap_type_id,
             // 'group_id' => ($inputs->document_type_id === '01') ? '01':'02',
             // 'state_type_id' => '01'
@@ -150,19 +163,27 @@ class BinnacleController extends Controller{
         return $inputs->all();
     }
 
-    public function show($id){
-        //
+    public function record($id)
+    {
+        $record = new BinnacleResource(Binnacle::findOrFail($id));
+
+        return $record;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function export(Request $request){
+
+        $date = $request->month_start.'-01';
+        $start_date = Carbon::parse($date);
+        $end_date = Carbon::parse($date)->addMonth()->subDay();
+        // dd($start_date.' - '.$end_date);
+
+        $records = Binnacle::whereBetween('created_at', [$start_date, $end_date])->get();
+        // dd(new BinnacleCollection($records));
+
+        return (new BinnacleExport)
+                ->records($records)
+                ->download('Reporte_Bitacora_'.Carbon::now().'.xlsx');
+
     }
 
     /**
@@ -183,8 +204,20 @@ class BinnacleController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+    try {   
+            $event = Binnacle::findOrFail($id);
+            // $this->deleteRecordInitialKardex($item);
+            $event->delete();
+
+            return [
+                'success' => true,
+                'message' => 'Evento eliminado con éxito'
+            ];
+        } catch (Exception $e) {
+
+            return ($e->getCode() == '23000') ? ['success' => false,'message' => 'El producto esta siendo usado por otros registros, no puede eliminar'] : ['success' => false,'message' => 'Error inesperado, no se pudo eliminar el producto'];
+
+        }
     }
 }

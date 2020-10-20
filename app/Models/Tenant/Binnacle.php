@@ -2,12 +2,15 @@
 
 namespace App\Models\Tenant;
 
+// use App\Models\Tenant\Category;
+// use App\Models\Tenant\Service;
+
 // use Illuminate\Database\Eloquent\Model;
 
 class Binnacle extends ModelTenant{
     
     // protected $table = 'Binnacles';
-    // protected $with = ['users','persons', 'category_partdiarys', 'service_partdiarys'];
+    // protected $with = ['category_binnacles', 'service_binnacles'];
     protected $fillable = [
         'user_id',
         'external_id',
@@ -15,11 +18,13 @@ class Binnacle extends ModelTenant{
         'start_time',
         'end_time',
         'hour',
-        'client',
         'client_id',
+        'client',
         'category_id',
+        'category',
         'period',
         'service_id',
+        'service',
         'description',
         'status',
     ];
@@ -48,9 +53,40 @@ class Binnacle extends ModelTenant{
         $this->attributes['client'] = (is_null($value))?null:json_encode($value);
     }
 
-    public function Client() {
-        return $this->belongsTo(CurrencyType::class, 'client_id');
+    // public function Client() {
+    //     return $this->belongsTo(CurrencyType::class, 'client_id');
+    // }
+
+    
+
+
+    public function getCategoryAttribute($value){
+        return (is_null($value))?null:(object) json_decode($value);
     }
+
+    public function setCategoryAttribute($value){
+        $this->attributes['category'] = (is_null($value))?null:json_encode($value);
+    }
+
+    // public function Category() {
+    //     return $this->belongsTo(Category::class, 'category_id');
+    // }
+
+
+
+    public function getServiceAttribute($value){
+        return (is_null($value))?null:(object) json_decode($value);
+    }
+
+    public function setServiceAttribute($value){
+        $this->attributes['service'] = (is_null($value))?null:json_encode($value);
+    }
+
+    public function Service() {
+        return $this->belongsTo(Service::class, 'service_id');
+    }
+
+
 
     // public function user(){
     //     return $this->belongsTo(User::class);

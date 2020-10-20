@@ -6,8 +6,7 @@ use App\Models\Tenant\Establishment as EstablishmentModel;
 
 class EstablishmentInput
 {
-    public static function set($establishment_id)
-    {
+    public static function set($establishment_id){
         $establishment = EstablishmentModel::find($establishment_id);
 
         return [

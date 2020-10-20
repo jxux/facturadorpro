@@ -8,7 +8,7 @@
             <div class="right-wrapper pull-right">
                 <template v-if="typeUser === 'admin'">
                     <!-- <div class="btn-group flex-wrap"> -->
-                    <button type="button" class="btn btn-custom btn-sm  mt-2 mr-2 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-download"></i> Exportar <span class="caret"></span></button>
+                    <button type="button" class="btn btn-custom btn-sm  mt-2 mr-2" @click.prevent="clickExport()" ><i class="fa fa-download"></i> Exportar <span class="caret"></span></button>
                         <!-- <div class="dropdown-menu" role="menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 42px, 0px);"> -->
                             <!-- <a class="dropdown-item text-1" href="#" @click.prevent="clickExport()">Listado</a> -->
                             <!-- <a class="dropdown-item text-1" href="#" @click.prevent="clickExportWp()">Woocommerce</a> -->
@@ -44,7 +44,7 @@
                         <td>{{ row.end_time }}</td>
                         <td>{{ row.hour }}</td>
                         <td>{{ row.client }}</td>
-                        <td>{{ row.category}}</td>
+                        <td>{{ row.category }}</td>
                         <td>{{ row.service}}</td>
                         <td>{{ row.period }}</td>
                         <td>{{ row.description }}</td>
@@ -56,7 +56,7 @@
                             <el-tag v-else-if="row.status === 100" effect="plain" type="success" size="mini">{{ row.status }} %</el-tag>
                         </td>
                         <td class="text-right">
-                            <!-- <button type="button" class="btn waves-effect waves-light btn-xs btn-info" @click.prevent="clickCreate(row.id)">Editar</button> -->
+                            <button type="button" class="btn waves-effect waves-light btn-xs btn-info" @click.prevent="clickCreate(row.id)">Editar</button>
                             <button type="button" class="btn waves-effect waves-light btn-xs btn-danger" @click.prevent="clickDelete(row.id)"><i class="el-icon-delete"></i></button>
                         </td>
                         <!-- <td class="text-right">
@@ -76,11 +76,11 @@
                 </data-table>
             </div>
 
-            <items-form :showDialog.sync="showDialog"
-                        :recordId="recordId"></items-form>
+            <binnacles-form :showDialog.sync="showDialog"
+                        :recordId="recordId"></binnacles-form>
 
             <!-- <items-import :showDialog.sync="showImportDialog"></items-import> -->
-            <!-- <items-export :showDialog.sync="showExportDialog"></items-export> -->
+            <binnacles-export :showDialog.sync="showExportDialog"></binnacles-export>
             <!-- <items-export-wp :showDialog.sync="showExportWpDialog"></items-export-wp> -->
 
             <!-- <warehouses-detail
@@ -95,11 +95,11 @@
 </template>
 <script>
 
-    import ItemsForm from './form.vue'
+    import BinnaclesForm from './form.vue'
     // import WarehousesDetail from './partials/warehouses.vue'
     // import ItemsImport from './import.vue'
     // import ItemsImportListPrice from './partials/import_list_price.vue'
-    // import ItemsExport from './partials/export.vue'
+    import BinnaclesExport from './partials/export.vue'
     // import ItemsExportWp from './partials/export_wp.vue'
     import DataTable from '../../../components/DataTable.vue'
     import {deletable} from '../../../mixins/deletable'
@@ -108,9 +108,9 @@
         props:['typeUser'],
         mixins: [deletable],
         components: {
-            ItemsForm, 
+            BinnaclesForm, 
             // ItemsImport, 
-            // ItemsExport, 
+            BinnaclesExport, 
             // ItemsExportWp, 
             DataTable, 
             // WarehousesDetail, 
@@ -163,9 +163,9 @@
             // clickImport() {
             //     this.showImportDialog = true
             // },
-            // clickExport() {
-            //     this.showExportDialog = true
-            // },
+            clickExport() {
+                this.showExportDialog = true
+            },
             // clickExportWp() {
             //     this.showExportWpDialog = true
             // },
@@ -176,25 +176,6 @@
                 this.destroy(`/${this.resource}/${id}`).then(() =>
                     this.$eventHub.$emit('reloadData')
                 )
-            },
-            clickDisable(id)
-            {
-                this.disable(`/${this.resource}/disable/${id}`).then(() =>
-                    this.$eventHub.$emit('reloadData')
-                )
-            },
-            clickEnable(id){
-                this.enable(`/${this.resource}/enable/${id}`).then(() =>
-                    this.$eventHub.$emit('reloadData')
-                )
-            },
-            
-            clickBarcode(row) {
-                if(!row.internal_id){
-                    return this.$message.error('Para generar el código de barras debe registrar el código interno.')
-                }
-
-                window.open(`/${this.resource}/barcode/${row.id}`)
             }
         }
     }

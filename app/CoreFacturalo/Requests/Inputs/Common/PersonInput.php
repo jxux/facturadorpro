@@ -9,10 +9,8 @@ use App\Models\Tenant\Catalogs\Department;
 use App\Models\Tenant\Catalogs\District;
 
 
-class PersonInput
-{
-    public static function set($person_id, $address_id = null)
-    {
+class PersonInput{
+    public static function set($person_id, $address_id = null){
         $person = PersonModel::find($person_id);
 
         if(!$person) {

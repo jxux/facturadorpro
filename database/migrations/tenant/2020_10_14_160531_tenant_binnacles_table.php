@@ -18,14 +18,16 @@ class TenantBinnaclesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->uuid('external_id');
             $table->date('date');
-            $table->datetime('start_time');
-            $table->datetime('end_time');
-            $table->decimal('hour', 8, 2)->nullable();
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->time('hour')->nullable();
             $table->unsignedInteger('client_id');
             $table->json('client');
             $table->unsignedInteger('category_id');
+            $table->json('category');
             $table->date('period');
             $table->unsignedInteger('service_id');
+            $table->json('service');
             $table->string('description', 2000)->nullable();
             $table->integer('status')->nullable();
 

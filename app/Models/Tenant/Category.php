@@ -9,6 +9,8 @@ class Category extends ModelTenant{
     protected $table = 'category_binnacles';
 
     protected $fillable = [
+        
+        'code',
         'name',
     ];
 
