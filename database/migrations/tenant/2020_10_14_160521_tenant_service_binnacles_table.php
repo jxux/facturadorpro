@@ -18,7 +18,7 @@ class TenantServiceBinnaclesTable extends Migration
             $table->char('code',5)->unique();
             $table->string('name', 150);
 
-            $table->char('category_id')->nullable();
+            $table->unsignedInteger('category_id')->nullable();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('Category_Binnacles');

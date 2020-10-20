@@ -11,8 +11,7 @@ class TenantBinnaclesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up(){
         Schema::create('binnacles', function (Blueprint $table) {
             $table->Increments('id');
             $table->unsignedInteger('user_id');
@@ -34,7 +33,7 @@ class TenantBinnaclesTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('customer_id')->references('id')->on('persons');
+            $table->foreign('client_id')->references('id')->on('persons');
             $table->foreign('category_id')->references('id')->on('Category_Binnacles');
             $table->foreign('service_id')->references('id')->on('Service_Binnacles');
         });
