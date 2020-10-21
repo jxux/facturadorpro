@@ -53,9 +53,9 @@ class Binnacle extends ModelTenant{
         $this->attributes['client'] = (is_null($value))?null:json_encode($value);
     }
 
-    // public function Client() {
-    //     return $this->belongsTo(CurrencyType::class, 'client_id');
-    // }
+    public function Client() {
+        return $this->belongsTo(CurrencyType::class, 'client_id');
+    }
 
     
 
@@ -68,9 +68,9 @@ class Binnacle extends ModelTenant{
         $this->attributes['category'] = (is_null($value))?null:json_encode($value);
     }
 
-    // public function Category() {
-    //     return $this->belongsTo(Category::class, 'category_id');
-    // }
+    public function Category() {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 
 
 

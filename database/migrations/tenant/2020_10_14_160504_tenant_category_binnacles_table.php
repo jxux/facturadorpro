@@ -19,6 +19,11 @@ class TenantCategoryBinnaclesTable extends Migration
             $table->string('name', 150);
             $table->timestamps();
         });
+
+        DB::table('Category_Binnacles')->insert([
+            ['code' => '-', 'name' => 'Sin Categoría', 'created_at' => now()],
+ 
+          ]);
     }
 
     /**

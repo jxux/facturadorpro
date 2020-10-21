@@ -41,8 +41,8 @@
                                 <td class="celda">{{Carbon\Carbon::parse($value->end_time)->format('h:i A')}}</td>
                                 <td class="celda">{{$value->hour }}</td>
                                 <td class="celda">{{$value->client->name }}</td>
-                                <td class="celda">{{$value->category_id }}</td>
-                                <td class="celda">{{$value->service_id }}</td>
+                                <td class="celda">{{$value->category->name }}</td>
+                                <td class="celda">{{$value->service->name }}</td>
                                 <td class="celda">{{Carbon\Carbon::parse($value->period)->format('m/Y') }}</td>
                                 <td class="celda">{{$value->description }}</td>
                                 <td class="celda">{{$value->status }}</td>

@@ -12,6 +12,8 @@ class Service extends ModelTenant{
         
         'code',
         'name',
+        'category_id',
+        
     ];
 
     // protected static function boot()

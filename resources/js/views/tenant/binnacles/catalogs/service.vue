@@ -33,25 +33,20 @@
                     </tbody>
                 </table>
             </div>
-            <!--<div class="row">-->
-                <!--<div class="col">-->
-                    <!--<button type="button" class="btn btn-custom btn-sm  mt-2 mr-2" @click.prevent="clickCreate()"><i class="fa fa-plus-circle"></i> Nuevo</button>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
-        <!-- <currency-types-form :showDialog.sync="showDialog"
-                            :recordId="recordId"></currency-types-form> -->
+        <currency-service-form :showDialog.sync="showDialog"
+                            :recordId="recordId"></currency-service-form>
     </div>
 </template>
 
 <script>
-    // import CurrencyTypesForm from './form.vue'
+    import CurrencyTypesForm from './form.vue'
     import {deletable} from '../../../../mixins/deletable'
 
     export default {
         mixins: [deletable],
         props: ['typeUser'],
-        // components: {CurrencyTypesForm},
+        components: {CurrencyTypesForm},
         data() {
             return {
                 showDialog: false,

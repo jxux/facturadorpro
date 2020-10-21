@@ -53,7 +53,8 @@ class BinnacleController extends Controller{
         $records = Binnacle::where('user_id', auth()->id())
                             ->where($request->column, 'like', "%{$request->value}%")
                             ->orderBy('date','desc')
-                            ->orderBy('end_time','desc');
+                            ->orderBy('end_time','desc')
+                            ;
         
         // return dd();
 
@@ -129,13 +130,6 @@ class BinnacleController extends Controller{
 
         $event->fill($request->all());
 
-        // $event = DB::connection('tenant')->transaction(function () use ($data) {
-        //     $doc = Binnacle::create($data); 
-
-        //     return $doc;
-        // });
-
-        // return dd();
         $event->save();
 
         return [
@@ -153,6 +147,7 @@ class BinnacleController extends Controller{
             'client' => PersonInput::set($inputs['client_id']),
             'category' => CategoryInput::set($inputs['category_id']),
             'service' => ServiceInput::set($inputs['service_id']),
+            
             // 'soap_type_id' => $company->soap_type_id,
             // 'group_id' => ($inputs->document_type_id === '01') ? '01':'02',
             // 'state_type_id' => '01'
@@ -186,24 +181,6 @@ class BinnacleController extends Controller{
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id){
     try {   
             $event = Binnacle::findOrFail($id);

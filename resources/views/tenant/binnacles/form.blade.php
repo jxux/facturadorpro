@@ -2,6 +2,6 @@
 
 @section('content')
  
-    <tenant-binnacles-form></tenant-binnacles-form>
+    <tenant-binnacles-form :type-user="{{json_encode(Auth::user()->type)}}"></tenant-binnacles-form>
 
 @endsection

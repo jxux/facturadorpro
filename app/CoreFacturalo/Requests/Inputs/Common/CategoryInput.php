@@ -8,9 +8,8 @@ class CategoryInput{
         $category = CategoryModel::find($category_id);
 
         return [
-
-                'code' => $category->code,
-                'name' => $category->name,
+            'code' => $category->code,
+            'name' => $category->name,
 
         ];
     }

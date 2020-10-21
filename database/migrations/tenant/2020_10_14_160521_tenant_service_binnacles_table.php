@@ -23,6 +23,8 @@ class TenantServiceBinnaclesTable extends Migration
 
             $table->foreign('category_id')->references('id')->on('Category_Binnacles');
         });
+
+        
     }
 
     /**

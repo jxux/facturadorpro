@@ -48,10 +48,17 @@ if ($hostname) {
             
             //Binnacles Catalogs
             Route::get('binnacles/category', 'Tenant\BinnacleCategorysController@records');
-            // Route::post('catalogs', 'Tenant\BinnacleCatalogsController@store');
+            Route::post('binnacles/category', 'Tenant\BinnacleCategorysController@store');
+            Route::get('binnacles/category/record/{id}', 'Tenant\BinnacleCategorysController@record');
+            Route::delete('binnacles/category/{id}', 'Tenant\BinnacleCategorysController@destroy');
+
             //Binnacles Service
             Route::get('binnacles/service', 'Tenant\BinnacleServicesController@records');
-            // Route::post('services', 'Tenant\BinnacleServicesController@store');
+            Route::post('binnacles/service', 'Tenant\BinnacleServicesController@store');
+            Route::get('binnacles/service/record/{id}', 'Tenant\BinnacleServicesController@record');
+            Route::delete('binnacles/service/{id}', 'Tenant\BinnacleServicesController@destroy');
+            Route::get('binnacles/service/tables', 'Tenant\BinnacleServicesController@tables');
+           
 
             //Orders
             Route::get('orders', 'Tenant\OrderController@index')->name('tenant_orders_index');

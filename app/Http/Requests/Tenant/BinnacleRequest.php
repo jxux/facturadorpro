@@ -37,9 +37,9 @@ class BinnacleRequest extends FormRequest{
             'category_id' => [
                 'required',
             ],
-            // 'service_id' => [
-            //     'required'
-            // ],
+            'service_id' => [
+                'required'
+            ],
             'period' => [
                 'required',
             ],

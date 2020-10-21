@@ -78,17 +78,7 @@
 
             <binnacles-form :showDialog.sync="showDialog"
                         :recordId="recordId"></binnacles-form>
-
-            <!-- <items-import :showDialog.sync="showImportDialog"></items-import> -->
             <binnacles-export :showDialog.sync="showExportDialog"></binnacles-export>
-            <!-- <items-export-wp :showDialog.sync="showExportWpDialog"></items-export-wp> -->
-
-            <!-- <warehouses-detail
-                :showDialog.sync="showWarehousesDetail"
-                :warehouses="warehousesDetail">
-            </warehouses-detail> -->
-
-            <!-- <items-import-list-price :showDialog.sync="showImportListPriceDialog"></items-import-list-price> -->
 
         </div>
     </div>
@@ -109,12 +99,8 @@
         mixins: [deletable],
         components: {
             BinnaclesForm, 
-            // ItemsImport, 
             BinnaclesExport, 
-            // ItemsExportWp, 
-            DataTable, 
-            // WarehousesDetail, 
-            // ItemsImportListPrice
+            DataTable
         },
         data() {
             return {

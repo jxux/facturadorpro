@@ -12,12 +12,11 @@ class CategoryResource extends JsonResource
      * @param  \Illuminate\Http\Request
      * @return array
      */
-    public function toArray($request)
-    {
+    public function toArray($request){
         return [
             'id' => $this->id,
             'code' => $this->code,
-            'name' => $this->description,
+            'name' => $this->name,
         ];
     }
 }

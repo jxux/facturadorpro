@@ -81,7 +81,7 @@
                     <div class="form-group" :class="{'has-danger': errors.description}">
                         <label class="control-label">Descripción</label>
                         <el-input :rows="5" v-model="form.description" dusk="description" type="textarea"></el-input>
-                        <p>{{form}}</p>
+                        <!-- <p>{{form}}</p> -->
                         <small class="form-control-feedback" v-if="errors.description" v-text="errors.description[0]"></small>
                     </div>
                 </div>
@@ -205,10 +205,6 @@
                 this.loading_submit = false,
                 this.errors = {}
                 this.form = {
-                    // establishment_id: null,
-                    // document_type_id: null,
-                    // series: null,
-                    // number: null,
                     aux_client_id:null,
                     aux_category_id:null,
                     aux_service_id:null,
@@ -221,7 +217,7 @@
                     service_id:null,
                     period:null,
                     description:null,
-                    status:null,
+                    status:0,
                 }
 
             },
