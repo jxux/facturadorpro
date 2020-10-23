@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\Tenant;
+use Hyn\Tenancy\Traits\UsesTenantConnection;
 
 // use App\Models\Tenant\Category;
 // use App\Models\Tenant\Service;
@@ -8,11 +9,16 @@ namespace App\Models\Tenant;
 // use Illuminate\Database\Eloquent\Model;
 
 class Binnacle extends ModelTenant{
+    use UsesTenantConnection;
     
     // protected $table = 'Binnacles';
     // protected $with = ['category_binnacles', 'service_binnacles'];
+    protected $with = ['user'];
+    
+   
     protected $fillable = [
         'user_id',
+        'user',
         'external_id',
         'date',
         'start_time',
@@ -43,6 +49,11 @@ class Binnacle extends ModelTenant{
         'start_time',
         'end_time',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 
     public function getClientAttribute($value){
@@ -85,6 +96,20 @@ class Binnacle extends ModelTenant{
     public function Service() {
         return $this->belongsTo(Service::class, 'service_id');
     }
+
+
+
+    public function getUserAttribute($value){
+        return (is_null($value))?null:(object) json_decode($value);
+    }
+
+    public function setUserAttribute($value){
+        $this->attributes['user'] = (is_null($value))?null:json_encode($value);
+    }
+
+    // public function User() {
+    //     return $this->belongsTo(User::class, 'user_id');
+    // }
 
 
 

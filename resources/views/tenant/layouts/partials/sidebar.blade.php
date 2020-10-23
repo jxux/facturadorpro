@@ -36,8 +36,8 @@
                             <li class="
                                 nav-parent
                                 {{ ($path[0] === 'binnacle')?'nav-active nav-expanded':'' }}
-                                {{-- {{ ($path[0] === 'catalogs')?'nav-active nav-expanded':'' }} --}}
-                                {{ ($path[0] === 'item-sets')?'nav-active nav-expanded':'' }}
+                                {{ ($path[0] === 'reviewers')?'nav-active nav-expanded':'' }}
+                                {{-- {{ ($path[0] === 'item-sets')?'nav-active nav-expanded':'' }} --}}
                                 {{ ($path[0] === 'persons' && $path[1] === 'clients')?'nav-active nav-expanded':'' }}
                                 {{ ($path[0] === 'binnacles' && $path[1] === 'catalogs')?'nav-active nav-expanded':'' }}
                                 ">
@@ -52,8 +52,8 @@
                                             Listado
                                         </a>
                                     </li>
-                                    <li class="{{ ($path[0] === 'cash'  )?'nav-active':'' }}">
-                                        <a class="nav-link" href="{{route('tenant.cash.index')}}">
+                                    <li class="{{ ($path[0] === 'reviewers'  )?'nav-active':'' }}">
+                                        <a class="nav-link" href="{{route('tenant.reviewers.index')}}">
                                             Supervisor
                                         </a>
                                     </li>

@@ -15,6 +15,7 @@ class TenantBinnaclesTable extends Migration
         Schema::create('binnacles', function (Blueprint $table) {
             $table->Increments('id');
             $table->unsignedInteger('user_id');
+            $table->json('user');
             $table->uuid('external_id');
             $table->date('date');
             $table->datetime('start_time');

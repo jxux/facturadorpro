@@ -135,13 +135,11 @@
                         <el-button class="submit" type="info" @click.prevent="cleanInputs"  icon="el-icon-delete" >Limpiar </el-button>
 
                     </div>
-
                 </div>
                 <div class="row mt-1 mb-3">
 
                 </div>
             </div>
-
 
             <div class="col-md-12">
                 <div id="scroll1" style="overflow-x:auto;">

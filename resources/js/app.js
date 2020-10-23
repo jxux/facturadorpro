@@ -32,17 +32,16 @@ Vue.component('tenant-dashboard-index', require('../../modules/Dashboard/Resourc
 Vue.component('x-graph', require('./components/graph/src/Graph.vue'));
 Vue.component('x-graph-line', require('./components/graph/src/GraphLine.vue'));
 
+Vue.component('tenant-revieweres-index', require('./views/tenant/reviewere/index.vue'));
+
 Vue.component('tenant-binnacles-index', require('./views/tenant/binnacles/index.vue'));
 Vue.component('tenant-binnacles-form', require('./views/tenant/binnacles/form.vue'));
 
 Vue.component('tenant-binnacles-category-index', require('./views/tenant/binnacles/catalogs/category/index.vue'));
 Vue.component('tenant-binnacles-category-form', require('./views/tenant/binnacles/catalogs/category/form.vue'));
 
-// Vue.component('tenant-binnacles-service', require('./views/tenant/binnacles/catalogs/service.vue'));
-
 Vue.component('tenant-binnacles-service-index', require('./views/tenant/binnacles/catalogs/service/index.vue'));
 Vue.component('tenant-binnacles-service-form', require('./views/tenant/binnacles/catalogs/service/form.vue'));
-
 
 Vue.component('tenant-companies-form', require('./views/tenant/companies/form.vue'));
 Vue.component('tenant-companies-logo', require('./views/tenant/companies/logo.vue'));

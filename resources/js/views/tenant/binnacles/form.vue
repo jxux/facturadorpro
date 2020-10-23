@@ -225,43 +225,32 @@
             calHora(){
                 var hora1 = moment(this.form.start_time)//moment('2020-06-01 10:00:00');//
                 var hora2 = moment(this.form.end_time)//moment('2020-06-01 13:30:00');//
-                this.form.hour = moment(hora2.diff(hora1)).utc().format("hh:mm")
-
-                // this.form.start_time = moment(this.form.start_time).format("hh:mm:ss")
-                // this.form.end_time = moment(this.form.end_time).format("hh:mm:ss")
-
+                this.form.hour = moment(hora2.diff(hora1)).utc().format("hh:mm:ss")
             },
 
-            resetForm() {
+            resetForm(){
                 this.initForm()
-                // this.form.sale_affectation_igv_type_id = (this.affectation_igv_types.length > 0)?this.affectation_igv_types[0].id:null
-                // this.form.purchase_affectation_igv_type_id = (this.affectation_igv_types.length > 0)?this.affectation_igv_types[0].id:null
-                // this.setDefaultConfiguration()
             },
-            create() {
 
+            create(){
                 this.titleDialog = (this.recordId)? 'Editar Evento':'Nuevo Evento'
                 if (this.recordId) {
                     this.$http.get(`/${this.resource}/record/${this.recordId}`)
                         .then(response => {
                             this.form = response.data.data
-                            // this.has_percentage_perception = (this.form.percentage_perception) ? true : false
-                            // this.changeAffectationIgvType()
-                            // this.changePurchaseAffectationIgvType()
                         })
                 }
-
             },
+
             loadRecord(){
                 if (this.recordId) {
                     this.$http.get(`/${this.resource}/record/${this.recordId}`)
                         .then(response => {
                             this.form = response.data.data
-                            // this.changeAffectationIgvType()
-                            // this.changePurchaseAffectationIgvType()
                         })
                 }
             },
+
             async submit() {
                 this.calHora()
                 this.loading_submit = true

@@ -20,10 +20,15 @@ if ($hostname) {
         Route::get('print/{model}/{external_id}/{format?}', 'Tenant\DownloadController@toPrint');
         Route::get('/exchange_rate/ecommence/{date}', 'Tenant\Api\ServiceController@exchangeRateTest');
 
+        // Route::middleware('auth:collaborador')->group(function() {
+        //     // Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+        //     Route::get('/', function () {
+        //         return redirect()->route('tenant.binnacles.index');
+        //     });
+        // });
+
         Route::middleware(['auth', 'redirect.module', 'locked.tenant'])->group(function() {
 
-            
-            
             Route::get('catalogs', 'Tenant\CatalogController@index')->name('tenant.catalogs.index');
             Route::get('advanced', 'Tenant\AdvancedController@index')->name('tenant.advanced.index');
             
@@ -32,6 +37,15 @@ if ($hostname) {
             Route::post('tasks/tables', 'Tenant\TaskController@tables');
             Route::post('tasks', 'Tenant\TaskController@store');
             Route::delete('tasks/{task}', 'Tenant\TaskController@destroy');
+
+             //Binnacles
+             Route::get('reviewers', 'Tenant\ReviewereController@index')->name('tenant.reviewers.index');
+             Route::get('reviewers/columns', 'Tenant\ReviewereController@columns');
+             Route::get('reviewers/records', 'Tenant\ReviewereController@records');
+            //  Route::post('binnacles', 'Tenant\BinnacleController@store');
+            //  Route::get('binnacles/record/{event}', 'Tenant\BinnacleController@record');
+             Route::delete('reviewers/{event}', 'Tenant\ReviewereController@destroy');
+             Route::get('binnacles/export', 'Tenant\BinnacleController@export')->name('tenant.binnacles.export');
             
             //Binnacles
             Route::get('binnacle', 'Tenant\BinnacleController@index')->name('tenant.binnacles.index');
@@ -266,7 +280,7 @@ if ($hostname) {
             Route::get('voided/status_masive', 'Tenant\VoidedController@status_masive');
 
             Route::delete('voided/{voided}', 'Tenant\VoidedController@destroy');
-//            Route::get('voided/ticket/{voided_id}/{group_id}', 'Tenant\VoidedController@ticket');
+            Route::get('voided/ticket/{voided_id}/{group_id}', 'Tenant\VoidedController@ticket');
 
             //Retentions
             Route::get('retentions', 'Tenant\RetentionController@index')->name('tenant.retentions.index');

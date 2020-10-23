@@ -608,8 +608,7 @@ class DocumentController extends Controller
         return $identity_document_type_id;
     }
 
-    public function changeToRegisteredStatus($document_id)
-    {
+    public function changeToRegisteredStatus($document_id){
         $document = Document::find($document_id);
         if($document->state_type_id === '01') {
             $document->state_type_id = '05';
@@ -622,8 +621,7 @@ class DocumentController extends Controller
         }
     }
 
-    public function import(Request $request)
-    {
+    public function import(Request $request){
         if ($request->hasFile('file')) {
             try {
                 $import = new DocumentsImport();
@@ -754,9 +752,7 @@ class DocumentController extends Controller
         return $records;
     }
 
-    public function data_table()
-    {
-
+    public function data_table(){
         $customers = $this->table('customers');
         $items = $this->getItems();
         $categories = Category::orderBy('name')->get();

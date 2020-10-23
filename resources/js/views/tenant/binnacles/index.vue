@@ -14,8 +14,8 @@
                             <!-- <a class="dropdown-item text-1" href="#" @click.prevent="clickExportWp()">Woocommerce</a> -->
                         <!-- </div> -->
                     <!-- </div> -->
-                    <button type="button" class="btn btn-custom btn-sm  mt-2 mr-2" @click.prevent="clickCreate()"><i class="fa fa-plus-circle"></i> Nuevo</button>
                 </template>
+                    <button type="button" class="btn btn-custom btn-sm  mt-2 mr-2" @click.prevent="clickCreate()"><i class="fa fa-plus-circle"></i> Nuevo</button>
             </div>
         </div>
         <div class="card mb-0">
@@ -23,7 +23,7 @@
                 <h3 class="my-0">Listado de Eventos</h3>
             </div>
             <div class="card-body">
-                <data-table :resource="resource">
+                <data-table :resource="resource" class="table-sm table-hover">
                     <tr slot="heading" width="100%">
                         <th>Fecha</th>
                         <th>H. Inicio</th>
@@ -49,14 +49,14 @@
                         <td>{{ row.period }}</td>
                         <td>{{ row.description }}</td>
                         <td>
-                            <el-tag v-if="row.status === 0" effect="dark" type="danger" size="mini">{{ row.status }} %</el-tag>
-                            <el-tag v-else-if="row.status === 25" effect="dark" type="danger" size="mini">{{ row.status }} %</el-tag>
-                            <el-tag v-else-if="row.status === 50" effect="dark" type="info" size="mini">{{ row.status }} %</el-tag>
-                            <el-tag v-else-if="row.status === 75" effect="dark" type="warning" size="mini">{{ row.status }} %</el-tag>
-                            <el-tag v-else-if="row.status === 100" effect="plain" type="success" size="mini">{{ row.status }} %</el-tag>
+                            <span v-if="row.status === 0" class="badge bg-danger text-white">{{ row.status }} %</span>
+                            <span v-else-if="row.status === 25" class="badge bg-danger text-white">{{ row.status }} %</span>
+                            <span v-else-if="row.status === 50" class="badge bg-warning text-white">{{ row.status }} %</span>
+                            <span v-else-if="row.status === 75" class="badge bg-warning text-white">{{ row.status }} %</span>
+                            <span v-else-if="row.status === 100" class="badge bg-success text-white">Terminado</span>
                         </td>
                         <td class="text-right">
-                            <button type="button" class="btn waves-effect waves-light btn-xs btn-info" @click.prevent="clickCreate(row.id)">Editar</button>
+                            <button type="button" class="btn waves-effect waves-light btn-xs btn-info" @click.prevent="clickCreate(row.id)"><i class="el-icon-edit-outline"></i></button>
                             <button type="button" class="btn waves-effect waves-light btn-xs btn-danger" @click.prevent="clickDelete(row.id)"><i class="el-icon-delete"></i></button>
                         </td>
                         <!-- <td class="text-right">

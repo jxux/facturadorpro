@@ -27,6 +27,9 @@ class UserCollection extends ResourceCollection
                 case 'client':
                     $type =  'Cliente' ;
                     break;
+                case 'collaborador':
+                    $type =  'Empleado' ;
+                    break;
                 default:
                     # code...
                     break;

@@ -4,17 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class RedirectModule
-{
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
-    {
+class RedirectModule{
+
+    public function handle($request, Closure $next){
 
         $module = $request->user()->getModule();
         $path = explode('/', $request->path());
@@ -78,6 +70,9 @@ class RedirectModule
             case 'establishments':
                 return redirect()->route('tenant.users.index');
 
+            case 'binnacles':
+                return redirect()->route('tenant.binnacles.index');
+
             /*case 'ecommerce':
                 return redirect()->route('tenant.ecommerce.index');*/
 
@@ -122,7 +117,12 @@ class RedirectModule
         }
         elseif($path[0] == "voided"){
             $group = "documents";
+        }
 
+        ///* Module binnacle  */
+
+        elseif($path[0] == "binnacles"){
+            $group = "binnacles";
         }
 
         ///* Module purchases  */
