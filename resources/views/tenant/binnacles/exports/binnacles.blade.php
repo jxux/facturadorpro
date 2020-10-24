@@ -20,6 +20,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Usuario</th>
                                 <th>Fecha</th>
                                 <th>Hora Inicio</th>
                                 <th>Hora Fin</th>
@@ -36,6 +37,7 @@
                             @foreach($records as $key => $value)
                             <tr>
                                 <td class="celda">{{$loop->iteration}}</td>
+                                <td class="celda">{{$value->user->name}}</td>
                                 <td class="celda">{{Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
                                 <td class="celda">{{Carbon\Carbon::parse($value->start_time)->format('h:i A')}}</td>
                                 <td class="celda">{{Carbon\Carbon::parse($value->end_time)->format('h:i A')}}</td>

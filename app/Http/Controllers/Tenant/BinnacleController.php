@@ -123,7 +123,12 @@ class BinnacleController extends Controller{
         $data = self::convert($request);
 
         $id = $request->input('id');
+
+        
         $event = Binnacle::firstOrNew(['id' => $id]);
+        
+        // $event = $request->auth()->id();
+        // $event->fill($request->all());
 
         $event->fill($request->all());
 
@@ -138,13 +143,14 @@ class BinnacleController extends Controller{
 
     public static function convert($inputs){
         $company = Company::active();
+        $user_id = auth()->id();
         $values = [
             'user_id' => auth()->id(),
             'external_id' => Str::uuid()->toString(),
             'client' => PersonInput::set($inputs['client_id']),
             'category' => CategoryInput::set($inputs['category_id']),
             'service' => ServiceInput::set($inputs['service_id']),
-            'user' => UserInput::set($inputs['user_id']),
+            'user' => UserInput::set($user_id),
         ]; 
 
         $inputs->merge($values);

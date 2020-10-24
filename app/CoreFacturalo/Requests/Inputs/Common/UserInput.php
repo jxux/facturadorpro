@@ -8,10 +8,11 @@ class UserInput{
         $usuario = UserModel::find($user_id);
 
         return [
+
                 'id' => $usuario->id,
-                'name' => '$user->name',
-                // 'email' => $user->email,
-                // 'type' => $user->type
+                'name' => $usuario->name,
+                'email' => $usuario->email,
+                'type' => $usuario->type
         ];
     }
 }

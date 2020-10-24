@@ -81,7 +81,7 @@
                     <div class="form-group" :class="{'has-danger': errors.description}">
                         <label class="control-label">Descripción</label>
                         <el-input :rows="5" v-model="form.description" dusk="description" type="textarea"></el-input>
-                        <!-- <p>{{form}}</p> -->
+                        <p>{{form}}</p>
                         <small class="form-control-feedback" v-if="errors.description" v-text="errors.description[0]"></small>
                     </div>
                 </div>
@@ -209,9 +209,10 @@
                     aux_category_id:null,
                     aux_service_id:null,
                     date: moment().format('YYYY-MM-DD'),
-                    start_time: null,//moment().format('YYYY-MM-DD HH:mm:ss'),
+                    start_time: null,//moment().format('.format()'),
                     end_time: null,//moment().format('YYYY-MM-DD HH:mm:ss'),
                     hour: null,//moment(fecha2.diff(fecha1)).utc().format("hh:mm"),
+                    user_id: null,
                     client_id: null,
                     category_id:null,
                     service_id:null,
@@ -223,9 +224,11 @@
             },
 
             calHora(){
-                var hora1 = moment(this.form.start_time)//moment('2020-06-01 10:00:00');//
-                var hora2 = moment(this.form.end_time)//moment('2020-06-01 13:30:00');//
-                this.form.hour = moment(hora2.diff(hora1)).utc().format("hh:mm:ss")
+                var hora1 = moment(this.form.start_time)
+                var hora2 = moment(this.form.end_time)
+
+                this.form.hour = moment(hora2.diff(hora1)).utc().format('HH:mm:ss');
+
             },
 
             resetForm(){
